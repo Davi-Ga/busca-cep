@@ -29,7 +29,9 @@ class TelaInicial:
 
     def controllerStart(self):
         while True:
-            self.button , self.values = self.tela.Read()
+            self.button, self.values, self.event = self.tela.Read()
+            if self.event == sg.WIN_CLOSED:
+                break
             try:    
                 valores = self.consultacep(self.values['CEP'])
                 for k, v in valores.items():
