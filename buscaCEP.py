@@ -10,7 +10,7 @@ class TelaInicial:
                  
                 [sg.Text('CEP'),sg.Input(size = (25,0), key='CEP')],
                 [sg.Button('Buscar')],
-                ##[sg.Output(size=(40,10))]
+                [sg.Output(size=(40,10))]
         
         ]
         
@@ -20,9 +20,9 @@ class TelaInicial:
         url= requests.get(f'https://viacep.com.br/ws/{cep}/json/')
 
         if url.status_code == 200:
-            print("Requisição feita com sucesso")
+            print('Requisição feita com sucesso')
         elif url.status_code == 400:
-            print("Bad Request 400")
+            print('Bad Request 400')
 
         endereco = url.json()
 
@@ -33,9 +33,12 @@ class TelaInicial:
             self.button, self.values = self.tela.Read()
             if self.event == sg.WIN_CLOSED:
                 break
-            val = self.consultaCep(self.values['CEP'])
-            for k, v in val.items():
-                print(k.upper() , ':' ,v)
+            try:
+                val = self.consultaCep(self.values['CEP'])
+                for k, v in val.items():
+                    print(k.upper() , ':' ,v)
+            except:
+                print('Erro de definição')
                 
 iniciar = TelaInicial()
 iniciar.controllerStart()
