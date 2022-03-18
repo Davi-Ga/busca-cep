@@ -3,6 +3,7 @@ import PySimpleGUI as sg
 import requests
 import json
 
+sg.theme('LightBlue7')
 class TelaInicial:
     def __init__(self):
         
@@ -14,7 +15,7 @@ class TelaInicial:
         
         ]
         
-        self.tela=sg.Window('Busca CEP',layout)
+        self.tela=sg.Window('Busca endereço',layout)
         
     def consultaCep(self,cep):
         url= requests.get(f'https://viacep.com.br/ws/{cep}/json/')
