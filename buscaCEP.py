@@ -12,9 +12,7 @@ class TelaInicial:
                 [sg.Text('CEP'),sg.Input(size = (25,0), key='CEP')],
                 [sg.Button('Buscar')],
                 [sg.Output(size=(40,10))]
-        
         ]
-        
         self.tela=sg.Window('Busca endereço',layout)
         
     def consultaCep(self,cep):
@@ -32,8 +30,7 @@ class TelaInicial:
     def controllerStart(self):
         while True:
             self.button, self.values = self.tela.Read()
-            if self.event == sg.WIN_CLOSED:
-                break
+            
             try:
                 val = self.consultaCep(self.values['CEP'])
                 for k, v in val.items():
